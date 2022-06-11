@@ -72,6 +72,7 @@ def find_nodes(node, f):
 
 MAX_NODE_COUNT = int(os.environ('MAX_NODE',90_000))
 node_count = 0
+print("MAX_NODE_COUNT",MAX_NODE_COUNT, file=sys.stderr)
 
 
 class Node:
