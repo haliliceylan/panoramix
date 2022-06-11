@@ -37,7 +37,7 @@ EXTRAS = {
     # 'fancy feature': ['django'],
 }
 
-VERSION = "0.4.1-halil"
+VERSION = "0.4.1"
 
 here = os.path.abspath(os.path.dirname(__file__))
 
