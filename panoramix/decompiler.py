@@ -19,10 +19,10 @@ from panoramix.utils.helpers import C, rewrite_trace
 
 logger = logging.getLogger(__name__)
 
-TIMEOUT_1 = int(os.environ.get('TIMEOUT_1',60 * 10))
-TIMEOUT_2 = int(os.environ.get('TIMEOUT_2',60 * 10))
-print("TIMEOUT_1",TIMEOUT_1, file=sys.stderr)
-print("TIMEOUT_2",TIMEOUT_2, file=sys.stderr)
+DECOMPILER_TIMEOUT = int(os.environ.get('DECOMPILER_TIMEOUT',60 * 10))
+VM_TIMEOUT = int(os.environ.get('VM_TIMEOUT',60 * 10))
+print("DECOMPILER_TIMEOUT",DECOMPILER_TIMEOUT, file=sys.stderr)
+print("VM_TIMEOUT",VM_TIMEOUT, file=sys.stderr)
 
 @dataclasses.dataclass
 class Decompilation:
@@ -158,9 +158,9 @@ def _decompile_with_loader(loader, only_func_name=None) -> Decompilation:
             if target > 1 and loader.lines[target][1] == "jumpdest":
                 target += 1
 
-            @timeout_decorator.timeout(TIMEOUT_1, timeout_exception=TimeoutInterrupt)
+            @timeout_decorator.timeout(DECOMPILER_TIMEOUT, timeout_exception=TimeoutInterrupt)
             def dec():
-                trace = VM(loader).run(target, stack=stack, timeout=TIMEOUT_2)
+                trace = VM(loader).run(target, stack=stack, timeout=VM_TIMEOUT)
                 explain("Initial decompiled trace", trace[1:])
 
                 if "--explain" in sys.argv:

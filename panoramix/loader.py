@@ -3,7 +3,7 @@ import logging
 import os
 import os.path
 import traceback
-
+import sys
 from panoramix.matcher import match
 from panoramix.utils.helpers import (
     COLOR_GRAY,
@@ -27,7 +27,8 @@ cache_sigs = {
     False: {},
 }
 
-LOADER_TIMEOUT = 60
+LOADER_TIMEOUT = int(os.environ.get('LOADER_TIMEOUT',60 * 10))
+print("LOADER_TIMEOUT",LOADER_TIMEOUT, file=sys.stderr)
 
 
 class Loader(EasyCopy):
