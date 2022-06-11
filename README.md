@@ -14,7 +14,8 @@ The code quality is still not great and the software is complex, it's mostly res
 ## Installation
 
 ```console
-$ pip install panoramix-decompiler
+$ pip install git+https://github.com/haliliceylan/panoramix.git
+$ docker pull haliliceylan/panoramix:latest
 ```
 
 ## Running
@@ -23,6 +24,15 @@ You can specify a web3 provider using the environment variable `WEB3_PROVIDER_UR
 
 ```console
 $ WEB3_PROVIDER_URI=http://localhost:7545 panoramix 0x0d94D81FD712126E7f320b5B10537D01d6a01563
+```
+
+
+```console
+docker run -e TIMEOUT_1 -e TIMEOUT_2 -e MAX_NODE_COUNT -E WEB3_PROVIDER_URI --network host -v /app:$PWD --rm -i haliliceylan/panoramix:latest
+```
+
+```console
+alias panoramix-docker="docker run -e TIMEOUT_1 -e TIMEOUT_2 -e MAX_NODE_COUNT -e WEB3_PROVIDER_URI --network host -v /app:$PWD --rm -i haliliceylan/panoramix:latest"
 ```
 
 You can also provide the bytecode for decompilation.
