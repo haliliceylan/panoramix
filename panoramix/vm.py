@@ -2,7 +2,7 @@ import logging
 import time
 import sys
 from copy import copy
-
+import os
 from panoramix.core import arithmetic
 import panoramix.utils.opcode_dict as opcode_dict
 from panoramix.core.algebra import (
