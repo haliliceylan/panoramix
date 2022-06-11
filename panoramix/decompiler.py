@@ -150,7 +150,8 @@ def _decompile_with_loader(loader, only_func_name=None) -> Decompilation:
 
         logger.info("Parsing %s...", fname)
         logger.debug("stack %s", stack)
-
+        print("TIMEOUT_1",int(os.environ('TIMEOUT_1',60 * 10)), file=sys.stderr)
+        print("TIMEOUT_2",int(os.environ('TIMEOUT_2',600)), file=sys.stderr)
         try:
             if target > 1 and loader.lines[target][1] == "jumpdest":
                 target += 1
